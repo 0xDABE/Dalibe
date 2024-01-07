@@ -25,8 +25,8 @@ CfgLoader cfgLoader = new CfgLoader(
         "ConfigExample.txt", new String[]{"name", "age"}, new String[]{"gender"});
 ```
 Second, cfgLoader should initialize config file with `.load()` method. It returns boolean value, true if all ok, and false if
-- Config file contains duplicate required keys (e.g. "name=John" and "name=Peter")
-- Config file not contains required key's value (e.g. "name=" or just no name key in config)
+- The config file contains duplicate required keys (e.g. "name=John" and "name=Peter")
+- The config file doesn't contain required key's value (e.g. "name=" or just no name key in config)
 - I/O exception
 
 
@@ -42,12 +42,12 @@ System.out.println(cfgLoader.stdwarn);
 ```
 Attributes `stderr` and `stdwarn` will be empty ("") if cfgLoader has no errors or warnings.
 
-Then you can read `requirement` (`name` and `age` as in example above) values from config. Using if for example
+Then you can read `requirement` (`name` and `age` as in example above) values from config. Using it if for example
 ```Java
 String userName = cfgLoader.getCfgValue("name");
 int userAge = Integer.parseInt(cfgLoader.getCfgValue("age"));
 ```
-Of course, this is only just an example. In any java projects you should use more elaborate constructions (e.g. try).
+Of course, this is only just an example. In any java projects, you should use more elaborate constructions (e.g. try).
 
 `getCfgValue` can't return `null` in required keys if `.load()` returned true, but for extra keys (`gender` e.g. as above) it can be `null` if config file specifies empty value ("gender=")
 
@@ -55,7 +55,7 @@ Of course, this is only just an example. In any java projects you should use mor
 String userName = cfgLoader.getCfgValue("gender"); // can be null
 ```
 
-You can mix required and extra keys in `CfgLoader`'s constructor  by passing `null` as String[], e.g.
+You can mix required and extra keys in `CfgLoader`'s constructor by passing `null` as String[], e.g.
 ```Java
 CfgLoader cfgLoader = new CfgLoader(
         "ConfigExample.txt", null, new String[]{"gender"});
@@ -71,7 +71,7 @@ You can get config's file name using cfgLoader's `currentConfig` attribute.
 ## Nargs
 Nargs is an analogue from C `getopt.h` (similar usage).
 ### Usage
-First, you need to create object from `Nargs` and declare String var, e.g.
+First, you need to create an object from `Nargs` and declare String var, e.g.
 ```Java
 Nargs nargs = new Nargs(args, "<a><b>:"); // in terminal, we use:   java -jar program.jar -a -b 12
 String opt;
@@ -101,13 +101,13 @@ If the `.getOpt()` method returns `null`, it means that all arguments have been 
 [![N|Solid](https://github.com/0xDABE/Dalibe/blob/main/Screenshot_1.png?raw=true)](https://github.com/0xDABE/Dalibe/blob/main/Screenshot_1.png?raw=true)
 This module gives you opportunity to print colourful text (using ANSI escape chars).
 ### Usage
-Just use static `ColoredMessage`.`<color>` methods to print text. Each color has 4 methods (green for example):
+Use static `ColoredMessage`.`<color>` methods to print text. Each color has four methods (blue, for example):
 - `.blue(String)` prints colored text
 - `.blue(String, boolean)` prints colored text if boolean is true, else prints not colored text
 - `.blueLn(String)` prints colored text with "\n" in the end
 - `.blueLn(String, boolean)`prints colored text with "\n" in the end if boolean is true, else prints not colored text with "\n" in the end
 
-Linux's terminals for the most part supports ANSI escapes, but on `Windows` i highly recommend to use [Windows terminal](https://apps.microsoft.com/detail/9N0DX20HK701?hl=en-eu&gl=EN).
+Linux's terminals for the most part support ANSI escapes, but on `Windows` I highly recommend to use [Windows terminal](https://apps.microsoft.com/detail/9N0DX20HK701?hl=en-eu&gl=EN).
 ## Parce
 This module parses any values from String.
 ### Usage
