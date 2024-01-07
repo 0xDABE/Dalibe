@@ -1,0 +1,9 @@
+###   Dalibe config loader  ###
+// comments
+# more comments
+
+    [Requirement]           // you can mark arbitrary parts of the file
+name=John Wattson
+age=12
+    [Extra]
+gender=male
