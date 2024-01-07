@@ -24,13 +24,13 @@ First, you need to create a CfgLoader object file by specifying in the construct
 CfgLoader cfgLoader = new CfgLoader(
         "ConfigExample.txt", new String[]{"name", "age"}, new String[]{"gender"});
 ```
-Second, cfgLoader should initialize config file with `.load` method. It returns boolean value, true if all ok, and false if
+Second, cfgLoader should initialize config file with `.load()` method. It returns boolean value, true if all ok, and false if
 - Config file contains duplicate required keys (e.g. "name=John" and "name=Peter")
 - Config file not contains required key's value (e.g. "name=" or just no name key in config)
 - I/O exception
 
 
-You can track any error while initializing(if `.load` returned false) using cfgLoader's attribute `stderr` or warnings in `stdwarn`
+You can track any error while initializing(if `.load()` returned false) using cfgLoader's attribute `stderr` or warnings in `stdwarn`
 Useful way to init config is
 ```Java
 if (cfgLoader.load()) 
@@ -48,7 +48,7 @@ int userAge = Integer.parseInt(cfgLoader.getCfgValue("age"));
 ```
 Of course, this is only just an example. In any java projects you should use more elaborate constructions (e.g. try).
 
-`getCfgValue` can't return `null` in required keys if `.load` returned true, but for extra keys (`gender` e.g. as above) it can be `null` if config file specifies empty value ("gender=")
+`getCfgValue` can't return `null` in required keys if `.load()` returned true, but for extra keys (`gender` e.g. as above) it can be `null` if config file specifies empty value ("gender=")
 
 ```Java
 String userName = cfgLoader.getCfgValue("gender"); // can be null
@@ -68,6 +68,33 @@ CfgLoader cfgLoader = new CfgLoader(
 You can get config's file name using cfgLoader's `currentConfig` attribute.
 
 ## Nargs
+Nargs is an analogue from C `getopt.h` (similar usage).
+First, you need to create object from `Nargs` and declare String var, e.g.
+```Java
+Nargs nargs = new Nargs(args, "<a><b>:"); // in terminal, we use:   java -jar program.jar -a -b 12
+String opt;
+```
+We are using `regex` string to set arg keys, but unlike C, you can set long arg keys, like `--force` or `--no`
+
+Nargs automatically adds one `-` symbol for each arg key.
+
+`:` symbol means(like in `getopt.h`) that this arg key must contain option(value).
+
+In example above we used `<a><b>:` regex, it means:
+- `-a` flag (not contain any value)
+- `-b` value (must contain value)
+
+Then, you can use while loop to get values from `nargs`, e.g.
+```Java
+while ((opt = nargs.getOpt()) != null){
+            switch (opt){
+                case "a" -> System.out.println("a flag");
+                case "b" -> System.out.println("b value is " + nargs.optionArg);
+            }
+        }
+```
+If the `.getOpt()` method returns `null`, it means that all arguments have been read. Else it returns argument key, and then we can get its value from `.optionArg` attribute in `nargs`. It is very convenient using `switch` construction.
+
 ## ColoredMessage
 ## Parce
 ## Times
