@@ -69,6 +69,7 @@ You can get config's file name using cfgLoader's `currentConfig` attribute.
 
 ## Nargs
 Nargs is an analogue from C `getopt.h` (similar usage).
+### Usage
 First, you need to create object from `Nargs` and declare String var, e.g.
 ```Java
 Nargs nargs = new Nargs(args, "<a><b>:"); // in terminal, we use:   java -jar program.jar -a -b 12
