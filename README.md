@@ -31,6 +31,7 @@ Second, cfgLoader should initialize config file with `.load()` method. It return
 
 
 You can track any error while initializing(if `.load()` returned false) using cfgLoader's attribute `stderr` or warnings in `stdwarn`
+
 Useful way to init config is
 ```Java
 if (cfgLoader.load()) 
@@ -97,6 +98,14 @@ while ((opt = nargs.getOpt()) != null){
 If the `.getOpt()` method returns `null`, it means that all arguments have been read. Else it returns argument key, and then we can get its value from `.optionArg` attribute in `nargs`. It is very convenient using `switch` construction.
 
 ## ColoredMessage
+[![N|Solid](https://github.com/0xDABE/Dalibe/blob/main/Screenshot_1.png?raw=true)](https://github.com/0xDABE/Dalibe/blob/main/Screenshot_1.png?raw=true)
+This module gives you opportunity to print colourful text (using ANSI escape chars)
+### Usage
+Just use static `ColoredMessage`.`<color>` methods to print text. Each color has 4 methods (green for example):
+- `.blue(String)` prints colored text
+- `.blue(String, boolean)` prints colored text if boolean is true, else prints not colored text
+- `.blueLn(String)` prints colored text with "\n" in the end
+- `.blueLn(String, boolean)`prints colored text with "\n" in the end if boolean is true, else prints not colored text with "\n" in the end
 ## Parce
 ## Times
 
