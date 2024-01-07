@@ -99,18 +99,56 @@ If the `.getOpt()` method returns `null`, it means that all arguments have been 
 
 ## ColoredMessage
 [![N|Solid](https://github.com/0xDABE/Dalibe/blob/main/Screenshot_1.png?raw=true)](https://github.com/0xDABE/Dalibe/blob/main/Screenshot_1.png?raw=true)
-This module gives you opportunity to print colourful text (using ANSI escape chars)
+This module gives you opportunity to print colourful text (using ANSI escape chars).
 ### Usage
 Just use static `ColoredMessage`.`<color>` methods to print text. Each color has 4 methods (green for example):
 - `.blue(String)` prints colored text
 - `.blue(String, boolean)` prints colored text if boolean is true, else prints not colored text
 - `.blueLn(String)` prints colored text with "\n" in the end
 - `.blueLn(String, boolean)`prints colored text with "\n" in the end if boolean is true, else prints not colored text with "\n" in the end
+
+Linux's terminals for the most part supports ANSI escapes, but on `Windows` i highly recommend to use [Windows terminal](https://apps.microsoft.com/detail/9N0DX20HK701?hl=en-eu&gl=EN).
 ## Parce
+This module parses any values from String.
+### Usage
+`Parce` has static methods that return arrays of values that parsed, e.g.
+```Java
+String toParse = "1, 2,3,4t5*6    7 (8)/9@0";
+System.out.println(Arrays.toString(Parce.parceInt(toParse)));
+```
+This code prints `[1, 2, 3, 4, 5, 6, 7, 8, 9, 0]`.
+
+You can use any method:
+- `parceInt()` returns int[]
+- `parceFloat()` returns float[]
+- `parceDouble()` returns double[]
+
+Module `Parce` also contains `parceWords` static method that returns String[] (words) from String (.split(" ") analogue, but no empty values).
+
 ## Times
+`Times`'s static methods converts `long` time values to convenient, e.g.
+```Java
+long time1 = 900L; // in ms
+long time2 = 1_000L;
+long time3 = 65_000L;
+long time4 = 3_700_000L;
+System.out.println(Times.getTimeMillis(time1));
+System.out.println(Times.getTimeMillis(time2));
+System.out.println(Times.getTimeMillis(time3));
+System.out.println(Times.getTimeMillis(time4));
+```
+Output is
+```output
+900ms
+1,0s
+1,1m
+1,0h
+```
 
 
 # Instructions
-
+This library is not in Maven or Gradle repos (lol it is tiny)
+that is why you can only download any module (java class) and then put it in your project.
+But you can compile all this project into one `.jar` file.
 
 
