@@ -4,7 +4,7 @@
 - [x] [CfgLoader](#cfgloader)
 - [x] [Nargs](#nargs)
 - [x] [ColoredMessage](#coloredmessage)
-- [x] [Parce](#parce)
+- [x] [Parce](#parce) (not a misspelling)
 - [x] [Times](#times)
 
 # Planned
