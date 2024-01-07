@@ -2,10 +2,10 @@
 
 # Library contains
 - [x] [CfgLoader](#cfgloader)
-- [x] [Nargs]()
-- [x] [ColoredMessage]()
-- [x] [Parce]()
-- [x] [Times]()
+- [x] [Nargs](#nargs)
+- [x] [ColoredMessage](#coloredmessage)
+- [x] [Parce](#parce)
+- [x] [Times](#times)
 
 # Planned
 - [ ] idk it is perfect for me just for now
